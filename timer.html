@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>timer</title>
+    </head>
+    <style>
+        #center{position: relative;
+                
+                left: px;
+        }
+        #main{display: flex;
+          
+             width: 200px;
+             padding: 20px;
+             margin-bottom: 10px;
+             font-size: 80px;
+
+        }
+        #main div{padding: 20px; 
+
+        }
+        .minut{padding: 5px;
+            border: 3px solid black;
+
+        }
+        .second{padding: 5px;
+            border: 3px solid black;
+}
+.ms{padding: 5px;
+    border: 3px solid black;
+}
+.btn{position: relative;
+     left: 55px;
+
+
+}
+.btn button{width: 200px;
+           height: 60px;
+           background-color: aqua;
+           cursor: pointer;
+
+}
+.btn button:hover{
+    transform: scale(1.2);
+    transition: 3s;
+}
+    </style>
+    <body>
+        <div id="center">
+        <div id="main">
+           
+        <div id="minut">00:</div>
+        <div id="second">00:</div>
+        <div id="mls">00:</div>
+        </div>
+        <div class="btn">
+       <button type="button" id="start" onclick="start()">START</button><br/><br/>
+       <button type="button"id="pause" onclick="pause()">PAUSE</button><br/><br/>
+       <button type="button"id="reset" onclick="reset()">RESTART</button><br/><br/>
+       </div>
+       </div>
+       <script>
+        var min = 0;
+         var sec = 0;
+         var mls = 0;
+         
+      var getminut = document.getElementById("minut")
+      var getsecond = document.getElementById("second")
+      var getmls = document.getElementById("mls")
+      var interval;
+      function start(){
+
+    
+       interval = setInterval(function(){
+      mls++
+      getmls.innerHTML = mls
+      
+     if(mls >= 100){
+        sec++
+        getsecond.innerHTML=sec
+      mls = 0
+     }
+ else if(sec >= 60){
+     min++
+     getminut.innerHTML = min
+     sec = 0
+ }
+
+document.getElementById("start").disabled = true
+      },10)
+    }
+    function pause(){
+        clearInterval(interval)
+        document.getElementById("start").disabled = false
+    }
+    function reset(){
+         min = 0;
+          sec = 0;
+          mls = 0;
+        getsecond.innerHTML = sec
+        getminut.innerHTML = min
+        getmls.innerHTML = mls
+    }
+       </script>
+    </body>
+</html>
